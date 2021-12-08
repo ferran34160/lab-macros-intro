@@ -1,0 +1,51 @@
+Sub Lab_Macro_Intro()
+'
+' Lab_Macro_Intro Macro
+'
+
+'
+    Columns("A:A").Select
+    Selection.Delete Shift:=xlToLeft
+    Range("A1").Select
+    Columns("A:A").ColumnWidth = 16.5
+    Columns("B:B").ColumnWidth = 22.25
+    Columns("C:C").ColumnWidth = 32.63
+    Columns("D:D").ColumnWidth = 14.25
+    Columns("E:E").ColumnWidth = 20.88
+    Range(Selection, Selection.End(xlToRight)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+    End With
+    ActiveSheet.Sort.SortFields.Clear
+    ActiveSheet.Sort.SortFields.Add Key:=Range( _
+        "A2:A203"), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:= _
+        xlSortNormal
+    ActiveSheet.Sort.SortFields.Add Key:=Range( _
+        "E2:E203"), SortOn:=xlSortOnValues, Order:=xlDescending, DataOption:= _
+        xlSortNormal
+    With ActiveSheet.Sort
+        .SetRange Range("A1:E203")
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Range("A1").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Font.Bold = True
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent2
+        .TintAndShade = 0.399975585192419
+        .PatternTintAndShade = 0
+    End With
+End Sub
